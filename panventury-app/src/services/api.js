@@ -23,7 +23,17 @@ api.interceptors.request.use(
 
 // Auth services
 export const login = (credentials) => axiosInstance.post('/api/auth/login', credentials);
-export const register = (userData) => axiosInstance.post('/api/auth/register', userData);
+export const register = (userData) => {
+  const registroData = {
+    email: userData.email,
+    password: userData.password,
+    nombre: userData.nombre,
+    telefono: userData.telefono || "",
+    direccion: userData.direccion || "",
+    rol: "ROLE_USUARIO"
+  };
+  return axiosInstance.post('/api/auth/register', registroData);
+};
 
 // Products services
 export const getProducts = () => {
