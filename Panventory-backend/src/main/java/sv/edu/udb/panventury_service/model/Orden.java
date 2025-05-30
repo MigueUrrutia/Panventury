@@ -1,6 +1,7 @@
 package sv.edu.udb.panventury_service.model;
 
 import jakarta.persistence.*;
+import sv.edu.udb.panventury_service.enums.EstadoOrdenEnum;
 import java.time.LocalDateTime;
 
 @Entity
@@ -16,7 +17,8 @@ public class Orden {
 
     private LocalDateTime fecha;
 
-    private String estado;
+    @Enumerated(EnumType.STRING)
+    private EstadoOrdenEnum estado = EstadoOrdenEnum.EN_ESPERA;
 
     // Getters y setters
     public Long getId() {
@@ -43,11 +45,11 @@ public class Orden {
         this.fecha = fecha;
     }
 
-    public String getEstado() {
+    public EstadoOrdenEnum getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(EstadoOrdenEnum estado) {
         this.estado = estado;
     }
 }

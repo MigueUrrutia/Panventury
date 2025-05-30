@@ -1,6 +1,7 @@
 package sv.edu.udb.panventury_service.model;
 
 import jakarta.persistence.*;
+import sv.edu.udb.panventury_service.enums.RolEnum;
 
 @Entity
 public class Usuario {
@@ -12,7 +13,9 @@ public class Usuario {
     private String nombre;
     private String correo;
     private String password;
-    private String rol;
+    
+    @Enumerated(EnumType.STRING)
+    private RolEnum rol;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "municipio_id", referencedColumnName = "id")
@@ -52,11 +55,11 @@ public class Usuario {
         this.password = password;
     }
 
-    public String getRol() {
+    public RolEnum getRol() {
         return rol;
     }
 
-    public void setRol(String rol) {
+    public void setRol(RolEnum rol) {
         this.rol = rol;
     }
 
